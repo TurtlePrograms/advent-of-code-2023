@@ -20,6 +20,18 @@ validnumbers = [
     "nine",
     "zero",
 ]
+stringnumbers = [
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "zero",
+]
 
 
 def getinput():
@@ -27,12 +39,20 @@ def getinput():
         return f.read().splitlines()
 
 
+def stringtonumbers(line):
+    for string in stringnumbers:
+        if string in line:
+            line = line.replace(string, str(stringnumbers.index(string) + 1))
+    return line
+
+
 def decode(line: str):
-    found_numbers = []
-    for validnumber in validnumbers:
-        if str(validnumber) in line:
-            found_numbers.append(validnumber)
-    return found_numbers
+    line = stringtonumbers(line)
+    foundnumbers = []
+    for number in validnumbers:
+        if str(number) in line:
+            foundnumbers.append(number)
+    return foundnumbers
 
 
 def decodestring(number):
