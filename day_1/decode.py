@@ -33,12 +33,51 @@ def decode(line: str):
         if str(validnumber) in line:
             line = line.replace(str(validnumber), "")
             found_numbers.append(validnumber)
-    print(found_numbers)
+    return found_numbers
+
+
+def decodestring(number):
+    if number == "one":
+        return 1
+    elif number == "two":
+        return 2
+    elif number == "three":
+        return 3
+    elif number == "four":
+        return 4
+    elif number == "five":
+        return 5
+    elif number == "six":
+        return 6
+    elif number == "seven":
+        return 7
+    elif number == "eight":
+        return 8
+    elif number == "nine":
+        return 9
+    elif number == "zero":
+        return 0
+    else:
+        return number
+
+
+def count(foundnumbers):
+    print(foundnumbers)
+    total = 0
+    for foundnumberlist in foundnumbers:
+        number1 = decodestring(foundnumberlist[0])
+        number2 = decodestring(foundnumberlist[-1])
+        sum = str(number1) + str(number2)
+        total += int(sum)
+    return total
 
 
 def main():
+    decoded = []
     for line in getinput():
-        decode(line)
+        decoded.append(decode(line))
+    total = count(decoded)
+    print(total)
 
 
 main()
