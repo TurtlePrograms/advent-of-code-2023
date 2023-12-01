@@ -15,23 +15,21 @@ def decode(input):
     last = None
     foundlast = False
     explored = ""
-    for i in range(len(characterers)):
+    for i in range(0, len(characterers)):
         explored = explored + characterers[i]
 
         for spelledNum in spelledNums:
-            if foundfirst:
-                break
             if spelledNum in explored and not foundfirst:
                 first = spelledNums.index(spelledNum) + 1
-                # print("found " + spelledNum, "in", explored)
+                print("found " + spelledNum, "in", explored)
                 foundfirst = True
-            if str(spelledNums.index(spelledNum) + 1) in explored and foundfirst:
+            if str(spelledNums.index(spelledNum) + 1) in explored and not foundfirst:
                 first = spelledNums.index(spelledNum) + 1
-                # print("found " + str(spelledNums.index(spelledNum) + 1), "in", explored)
+                print("found " + str(spelledNums.index(spelledNum) + 1), "in", explored)
                 foundfirst = True
-
+    print("first", first)
     explored = ""
-    for i in range(len(characterers) - 1, 0 - 1, -1):
+    for i in reversed(range(len(characterers))):
         explored = characterers[i] + explored
         # print(explored)
         for spelledNum in spelledNums:
@@ -39,14 +37,14 @@ def decode(input):
                 break
             if spelledNum in explored and not foundlast:
                 last = spelledNums.index(spelledNum) + 1
-                # print("found " + spelledNum, "in", explored)
+                print("found " + spelledNum, "in", explored)
                 foundlast = True
-            if str(spelledNums.index(spelledNum) + 1) in explored and foundlast:
+            if str(spelledNums.index(spelledNum) + 1) in explored and not foundlast:
                 last = spelledNums.index(spelledNum) + 1
-                # print("found " + str(spelledNums.index(spelledNum) + 1), "in", explored)
+                print("found " + str(spelledNums.index(spelledNum) + 1), "in", explored)
                 foundlast = True
 
-    return first, last
+    return str(first) + str(last)
 
 
 def main():
@@ -54,8 +52,11 @@ def main():
     decoded = []
     for line in input:
         decoded.append(decode(line))
+    total = 0
     for i in range(len(decoded)):
         print(i + 1, decoded[i])
+        total = total + int(decoded[i])
+    print("total", total)
 
 
 main()
