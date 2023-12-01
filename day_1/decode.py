@@ -31,7 +31,6 @@ def decode(line: str):
     found_numbers = []
     for validnumber in validnumbers:
         if str(validnumber) in line:
-            line = line.replace(str(validnumber), "")
             found_numbers.append(validnumber)
     return found_numbers
 
@@ -62,11 +61,11 @@ def decodestring(number):
 
 
 def count(foundnumbers):
-    print(foundnumbers)
     total = 0
     for foundnumberlist in foundnumbers:
         number1 = decodestring(foundnumberlist[0])
         number2 = decodestring(foundnumberlist[-1])
+        print(number1, number2)
         sum = str(number1) + str(number2)
         total += int(sum)
     return total
